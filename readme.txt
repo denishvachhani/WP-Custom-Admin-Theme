@@ -3,7 +3,7 @@ Contributors: heliossolutions
 Tags: Admin theme style plugin,Free admin theme style plugin,Free backend theme style plugin,Download Admin theme style plugin,Download backend theme style plugin,Best Admin theme style plugin,Best backend theme style plugin,background theme style plugin,background colour, navigation menu,Best admin theme,Best back-end, backend, back end theme,Customized WordPress admin theme,customized admin theme,Custom admin theme,Admin colour, colour, new admin ui
 Requires at least: 3.0
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html 
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tested up to: 3.8
 Stable tag: 1.0
 
@@ -34,7 +34,7 @@ Download free admin theme style plugin for better experience.
 
 == Installation ==
 
-1. Upload the plugin folder `hs-custom-admin-theme` to the `/wp-content/plugins/` directory.
+1. Upload the plugin folder `hs-custom-admin-themes` to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the "Plugins -> Installed plugins -> Activate HS Custom Admin Theme" menu in WordPress.
 3. Find "HS Custom Admin Theme" Plugin in -> Settings options.
 

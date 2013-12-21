@@ -8,7 +8,7 @@
  * Author: Helios Solutions
  * Author URI: http://heliossolutions.in/
  */
-$hs_admin_theme_plugin_url = WP_PLUGIN_URL . '/hs-custom-admin-theme';
+$hs_admin_theme_plugin_url = WP_PLUGIN_URL . '/hs-custom-admin-themes';
 $hs_filepath = plugin_dir_path(__FILE__);
 //echo $hs_filepath;
 $options = array();
@@ -39,13 +39,13 @@ function admin_theme() {
 
     /*
      * 	Use the add_options_page function
-     * 	add_options_page( $page_title, $menu_title, $capability, $menu-slug, $function ) 
+     * 	add_options_page( $page_title, $menu_title, $capability, $menu-slug, $function )
      *
      */
     add_options_page(
             'HS Custom Admin Theme', 'HS Custom Admin Theme', 'manage_options', 'admin-theme', 'admin_theme_options_page'
     );
-    wp_enqueue_script('jscolor', plugins_url('hs-custom-admin-theme/inc/js/hscolor.js'), array('jquery'), '', false);
+    wp_enqueue_script('jscolor', plugins_url('hs-custom-admin-themes/inc/js/hscolor.js'), array('jquery'), '', false);
 }
 
 add_action('admin_menu', 'admin_theme');
@@ -82,7 +82,7 @@ function admin_theme_options_page() {
         $menufontcolor = $_POST["menufontcolor"];
         $menufontcolorhover = $_POST["menufontcolorhover"];
 
-        $insert = "INSERT INTO $table_name (`theme`, `menubg`, `menuhoverbg`, `submenubg`, `menufontcolor`, `menufonthover`) 
+        $insert = "INSERT INTO $table_name (`theme`, `menubg`, `menuhoverbg`, `submenubg`, `menufontcolor`, `menufonthover`)
             VALUES ('$themename','$menubgcolor','$menuhoverbgcolor','$submenubgcolor','$menufontcolor','$menufontcolorhover')";
         $wpdb->query($insert);
         require ('inc/style-gen.php');
@@ -108,7 +108,7 @@ function admin_theme_options_page() {
 /* Load Style-sheet for plugin */
 
 function admin_theme_backend_styles() {
-    wp_enqueue_style('admin_theme_backend_css', plugins_url('hs-custom-admin-theme/admin-theme.css'));
+    wp_enqueue_style('admin_theme_backend_css', plugins_url('hs-custom-admin-themes/admin-theme.css'));
 }
 
 add_action('admin_head', 'admin_theme_backend_styles');
@@ -117,7 +117,7 @@ add_action('admin_head', 'admin_theme_backend_styles');
 
 function admin_theme_frontend_scripts_and_styles() {
 
-    wp_enqueue_script('jscolor', plugins_url('hs-custom-admin-theme/inc/js/hscolor.js'), array('jquery'), '', false);
+    wp_enqueue_script('jscolor', plugins_url('hs-custom-admin-themes/inc/js/hscolor.js'), array('jquery'), '', false);
 }
 
 add_action('wp_enqueue_scripts', 'admin_theme_frontend_scripts_and_styles');
@@ -146,7 +146,7 @@ function create_hs_admin_theme_table() {
 function insert_startup_value() {
     global $wpdb;
     $table_name = $wpdb->prefix . "hs_admin_theme";
-    $insert_initial = "INSERT INTO $table_name (`theme`, `menubg`, `menuhoverbg`, `submenubg`, `menufontcolor`, `menufonthover`) 
+    $insert_initial = "INSERT INTO $table_name (`theme`, `menubg`, `menuhoverbg`, `submenubg`, `menufontcolor`, `menufonthover`)
             VALUES ('Hs Theme-1','#CF4944','#DD823B','#BE3631','#FFFFFF','#FFFFFF'),('Hs Theme-2','#52ACCC','#096484','#4796B3','#FFFFFF','#FFFFFF'),('Hs Theme-3','#222222','#2EA2CC','#333333','#FFFFFF','#EBEBEB')";
     $wpdb->query($insert_initial);
 }
