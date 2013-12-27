@@ -3,6 +3,14 @@ HS Custom Admin theme for Wordpress Backend
 
 Create your own wordpress admin colour schemes. Furnish an admin dashboard with an attractive colours of your own choice. 
 
+Installation for Github version
+=====================
+
+1. Click on "Download ZIP". 
+2. Copy zip file to "wp-content/plugins/hs-custom-admin-theme-master.zip"
+3. Extract it and Rename the folder to "hs-custom-admin-theme"
+4. Activate the plugin.
+
 == Description ==
 
 Fully customize you wordpress admin dashboard with your own colour choices.
