@@ -45,6 +45,9 @@ ul#adminmenu li.opensub .wp-menu-name:after{
 #adminmenu .wp-has-current-submenu ul > li > a, .folded #adminmenu li.menu-top .wp-submenu > li > a {
     padding: 5px 0 5px 5px;
 }
+#wpadminbar .ab-item, #wpadminbar a.ab-item, #wpadminbar > #wp-toolbar span.ab-label, #wpadminbar > #wp-toolbar span.noticon{
+    color:' . $menufontcolor . ';
+}
 #adminmenuback, #adminmenuwrap,#adminmenu {
     background-color: ' . $menubgcolor . ';
     border-color: ' . $menubgcolor . ';
