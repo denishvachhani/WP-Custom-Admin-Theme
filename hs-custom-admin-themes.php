@@ -4,11 +4,11 @@
  * Plugin Name: HS Custom Admin Theme
  * Plugin URI: http://heliossolutions.in/
  * Description: HS Custom Admin Theme Style endeavours to transform your working experience into more enjoyable, systemised and beneficial way.
- * Version: 1.0
+ * Version: 2.0.3
  * Author: Helios Solutions
  * Author URI: http://heliossolutions.in/
  */
-$hs_admin_theme_plugin_url = WP_PLUGIN_URL . '/hs-custom-admin-theme';
+$hs_admin_theme_plugin_url = WP_PLUGIN_URL . '/hs-custom-admin-themes';
 $hs_filepath = plugin_dir_path(__FILE__);
 //echo $hs_filepath;
 $options = array();
@@ -41,10 +41,10 @@ function admin_theme() {
      * 	add_options_page( $page_title, $menu_title, $capability, $menu-slug, $function ) 
      *
      */
-    add_options_page(
+    add_users_page(
             'HS Custom Admin Theme', 'HS Custom Admin Theme', 'manage_options', 'admin-theme', 'admin_theme_options_page'
     );
-    wp_enqueue_script('jscolor', plugins_url('hs-custom-admin-theme/inc/js/hscolor.js'), array('jquery'), '', false);
+    wp_enqueue_script('jscolor', plugins_url('hs-custom-admin-themes/inc/js/hscolor.js'), array('jquery'), '', false);
 }
 
 add_action('admin_menu', 'admin_theme');
@@ -72,7 +72,16 @@ function admin_theme_options_page() {
             $menufontcolor = $row["menufontcolor"];
             $menufontcolorhover = $row["menufonthover"];
             require ('inc/style-gen.php');
-        }
+			mysql_query("Update $table_name set active='N'");
+			
+			$wpdb->update(
+                $table_name, array(
+            'active' => $themeid
+                ), array('id' => $themeid), array(
+            '%s',
+                ), array('%d')
+			);
+		}
     } elseif (isset($_POST["save_newtheme"])) {
         $themename = $_POST["themename"];
         $menubgcolor = $_POST["menubgcolor"];
@@ -127,6 +136,32 @@ function admin_theme_options_page() {
         );
 
         require ('inc/style-gen.php');
+    }elseif (isset($_POST["themename"])) {
+        $themename = $_POST["themename"];
+        $menubgcolor = $_POST["menubgcolor"];
+        $menuhoverbgcolor = $_POST["menuhoverbgcolor"];
+        $submenubgcolor = $_POST["submenubgcolor"];
+        $menufontcolor = $_POST["menufontcolor"];
+        $menufontcolorhover = $_POST["menufontcolorhover"];
+
+        /*$wpdb->insert(
+                $table_name, array(
+            'theme' => $themename,
+            'menubg' => $menubgcolor,
+            'menuhoverbg' => $menuhoverbgcolor,
+            'submenubg' => $submenubgcolor,
+            'menufontcolor' => $menufontcolor,
+            'menufonthover' => $menufontcolorhover
+                ), array(
+            '%s',
+            '%s',
+            '%s',
+            '%s',
+            '%s',
+            '%s'
+                )
+        );*/
+        require ('inc/style-gen.php');
     }
 
     require( 'inc/front-end.php' );
@@ -136,7 +171,7 @@ function admin_theme_options_page() {
 /* Load Style-sheet for plugin */
 
 function admin_theme_backend_styles() {
-    wp_enqueue_style('admin_theme_backend_css', plugins_url('hs-custom-admin-theme/admin-theme.css'));
+    wp_enqueue_style('admin_theme_backend_css', plugins_url('hs-custom-admin-themes/admin-theme.css'));
 }
 
 add_action('admin_head', 'admin_theme_backend_styles');
@@ -145,7 +180,7 @@ add_action('admin_head', 'admin_theme_backend_styles');
 
 function admin_theme_frontend_scripts_and_styles() {
 
-    wp_enqueue_script('jscolor', plugins_url('hs-custom-admin-theme/inc/js/hscolor.js'), array('jquery'), '', false);
+    wp_enqueue_script('jscolor', plugins_url('hs-custom-admin-themes/inc/js/hscolor.js'), array('jquery'), '', false);
 }
 
 add_action('wp_enqueue_scripts', 'admin_theme_frontend_scripts_and_styles');
@@ -165,6 +200,7 @@ function create_hs_admin_theme_table() {
 	`submenubg` VARCHAR(255) NOT NULL,
 	`menufontcolor` VARCHAR(255) NULL,
         `menufonthover` VARCHAR(255) NULL,
+		`active` VARCHAR(255) NULL,
 	 PRIMARY KEY (`id`)) ENGINE = InnoDB;";
     }
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -182,14 +218,16 @@ function insert_startup_value() {
         'menuhoverbg' => '#DD823B',
         'submenubg' => '#BE3631',
         'menufontcolor' => '#FFFFFF',
-        'menufonthover' => '#FFFFFF'
+        'menufonthover' => '#FFFFFF',
+		'active' => 'N'
             ), array(
         '%s',
         '%s',
         '%s',
         '%s',
         '%s',
-        '%s'
+        '%s',
+		'%s'
             )
     );
     $wpdb->insert(
@@ -199,14 +237,16 @@ function insert_startup_value() {
         'menuhoverbg' => '#096484',
         'submenubg' => '#4796B3',
         'menufontcolor' => '#FFFFFF',
-        'menufonthover' => '#FFFFFF'
+        'menufonthover' => '#FFFFFF',
+         'active' => 'N'
             ), array(
         '%s',
         '%s',
         '%s',
         '%s',
         '%s',
-        '%s'
+        '%s',
+		'%s'
             )
     );
     $wpdb->insert(
@@ -216,14 +256,16 @@ function insert_startup_value() {
         'menuhoverbg' => '#2EA2CC',
         'submenubg' => '#333333',
         'menufontcolor' => '#FFFFFF',
-        'menufonthover' => '#EBEBEB'
+        'menufonthover' => '#EBEBEB',
+		'active' => 'N'
             ), array(
         '%s',
         '%s',
         '%s',
         '%s',
         '%s',
-        '%s'
+        '%s',
+		'%s'
             )
     );
 }
@@ -249,13 +291,13 @@ if (!empty($_GET['mode'])) {
         $wpdb->delete(
                 $table_name, array('id' => $themeid), array('%d')
         );
-        header("location:options-general.php?page=admin-theme");
+        header("location:users.php?page=admin-theme");
     } elseif ($_GET['mode'] == 'addtheme') {
         $verify = "AddNewTheme";
-        header("location:options-general.php?page=admin-theme");
+        header("location:users.php?page=admin-theme");
     } elseif ($_GET['mode'] == 'restoredefault') {
         unlink(__DIR__ . '/inc/css/custom.css');
-        header("location:options-general.php?page=admin-theme");
+        header("location:users.php?page=admin-theme");
     }
 }
 ?>

@@ -5,7 +5,7 @@ Requires at least: 3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tested up to: 3.8
-Stable tag: 1.0
+Stable tag: 2.0.3
 
 Create your own wordpress admin colour schemes. Furnish an admin dashboard with an attractive colours of your own choice.
 
@@ -41,15 +41,60 @@ Download free admin theme style plugin for better experience.
 
 == Screenshots ==
 
-1. HS admin custom theme - Backend
-2. Update or create new admin colour scheme
+1. To Create new Theme : 
+	1.Click on USER Menu -> Click on HS Custom Admin Theme
+	2.Click on Create New HS custom Theme
+	3.Give Theme Name and select colors.
+	4.Click on "Save" to Save theme.
+
+2. To Apply Theme : 
+	1.Click on USER Menu -> Click on HS Custom Admin Theme
+	2.Select Themes from Available Themes(Referesh page if you can't see changes).
+
+3. To Update Theme : 
+	1.Click on USER Menu -> Click on HS Custom Admin Theme
+	2.Select Themes from Available Themes.
+	3.Change colors in Form.
+	4.Click "Update" to update theme.
+
+4. To Save As theme:
+	1.Click on USER Menu -> Click on HS Custom Admin Theme
+	2.Select Themes from Available Themes.
+	3.Change colors in Form.
+	4.Click "Save AS" button.
+	5.Type Theme Name in Textbox.
+	6.Click "Save AS" button to Save theme.
+
+5. TO Restore Original Theme : 
+	1.Click on USER Menu -> Click on HS Custom Admin Theme
+	2.Click on Restore to Default button.
+
+6. TO Delete Theme : 
+	1.Click on USER Menu -> Click on HS Custom Admin Theme
+	2.Click on "X" button (Right Top Corner in Available Themes).
+
 
 == Changelog ==
+
+= 2.0.2 =
+* Bug fixes.
+
+= 2.0.1 =
+* Security Fixes - Changed the sql query formats.
 
 = 1.0 =
 * Initial launch of the plugin
 
 == Upgrade Notice ==
+
+= 2.0.3 =
+* change menu position and apply colors to theme while changing colors.
+
+= 2.0.2 =
+* Bug Fixes - Fix the bugs.
+
+= 2.0.1 =
+* Security Fixes - Changed the sql query formats.
 
 = 1.0 =
 * This is the first version of the plugin.
